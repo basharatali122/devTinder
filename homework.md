@@ -15,3 +15,7 @@
 -Push all code to remote oringin
 -Play with routes and route extensios ex, /hello //hello/hello2/hello 
 -Order of the routes matter
+-Multiple Route handler - play with the code.
+-next()
+-next  function and errors along with res.send()
+-app.use("/routes", rh ,rh2, rh3, [rh4,rh5],rh6)

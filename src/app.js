@@ -3,29 +3,29 @@ const express = require("express");
 const app = express();
 
 
-app.get("/ab*c",(req,res)=>{
-    console.log("active")
-    res.send("this is ab*c routes")
-})
-app.get("/ab?cd",(req,res)=>{
-    res.send("this is ab?cd routes")
-})
-app.get("/ab+cd",(req,res)=>{
-    res.send("this is ab+cd routes")
-})
+app.use('/user',(req,res,next)=>{
+    // res.send("this is the first response")
+    next();
+},
+[(req,res,next)=>{
+    console.log("response 2");
 
-app.get("/ab(cd)?ef",(req,res)=>{
-    res.send("this is ab(cd)?ef routes")
-})
-app.get(/a/,(req,res)=>{
-    res.send("this is the regix part of routes")
-})
-app.get(/.*fly$/,(req,res)=>{
-    res.send(
-        "this will search everthing which end with the fly."
-    )
-
-})
+    next();
+},
+(req, res,next)=>{
+    console.log("response3");
+    next();
+},
+(req,res,next)=>{
+    console.log("response4")
+    next();
+}]
+, 
+(req,res,)=>{
+    console.log("response 5");
+    res.send("this is the last response and it is call through the next function from top to bottom and at the last it is called")
+}
+)
 
 app.listen(3000,()=>{
     console.log("server is listning on 3000 port")
