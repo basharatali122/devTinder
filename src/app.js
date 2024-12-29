@@ -2,33 +2,21 @@ const express = require("express");
 
 const app = express();
 
+const { adminAuth, userAuth } = require("./middlewares/auth");
 
-app.use('/user',(req,res,next)=>{
-    // res.send("this is the first response")
-    next();
-},
-[(req,res,next)=>{
-    console.log("response 2");
-
-    next();
-},
-(req, res,next)=>{
-    console.log("response3");
-    next();
-},
-(req,res,next)=>{
-    console.log("response4")
-    next();
-}]
-, 
-(req,res,)=>{
-    console.log("response 5");
-    res.send("this is the last response and it is call through the next function from top to bottom and at the last it is called")
-}
-)
-
-app.listen(3000,()=>{
-    console.log("server is listning on 3000 port")
+// Admin Middleware and Routes
+app.use("/admin", adminAuth);
+app.get("/admin/allData", (req, res) => {
+    res.send("Admin data retrieved successfully");
 });
 
+// User Middleware and Routes
+app.use("/user", userAuth);
+app.get("/user/getData", (req, res) => {
+    res.send("User data retrieved successfully");
+});
 
+// Start Server
+app.listen(3000, () => {
+    console.log("Server is listening on port 3000");
+});
