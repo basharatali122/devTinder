@@ -24,3 +24,10 @@
 -Diff app.use and app.all
 -Write a  dummy auth middleware for admin
 -Write a dummy auth middleware for all user routes , axcept /user/login
+-Error handling using ((err,req,res,next)=>{})
+
+-Create a free cluster on MongoDB official website (Mongo Atlas)
+-Instal mongoose library
+-Connect your application to the Database/devTinder
+-Call the connectDB function and connect to the database before starting the server 777
+-Create a user schema and user model
