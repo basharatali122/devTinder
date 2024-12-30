@@ -31,3 +31,10 @@
 -Connect your application to the Database/devTinder
 -Call the connectDB function and connect to the database before starting the server 777
 -Create a user schema and user model
+
+-Create Post/signup API to add data to database
+-Push some documents using API calls from postman
+-Error handling using try , catch
+-Js object vs JSON (difference)
+-Add the express.json middleware to your app
+-Make your signup API dynamic to recive data form the end user
