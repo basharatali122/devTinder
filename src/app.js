@@ -1,7 +1,9 @@
 const express = require("express");
 const connectDB = require("./config/database");
 const app = express();
-const User = require("./models/user")
+const User = require("./models/user");
+const { SchemaTypeOptions } = require("mongoose");
+const user = require("./models/user");
 
 app.use(express.json())
 app.post("/signup", async (req,res)=>{
@@ -69,6 +71,47 @@ app.get("/feed",async(req,res)=>{
         res.status(404).send("All users are not available")
     }
 })
+
+// user delete api by id
+app.delete("/user",async(req,res)=>{
+    const userId = req.body.userId;
+
+   try{
+
+    const user = await User.findByIdAndDelete(userId )
+       //we can also do this in this way
+       // const user = await User.findByIdAndDelete({_id:userId})
+
+       res.send("user deleted successfully")
+    }
+    catch (err){
+        res.status(400).send("user is not found")
+    }
+
+})
+
+//find one and update model 
+
+app.patch("/update",async(req,res)=>{
+    const userId = req.body.userId;
+    const data=req.body;
+
+
+    try{
+       const user = await User.findOneAndUpdate({_id:userId},data,{returnDocument:'before',
+
+       
+         });
+         console.log(user)
+        
+        res.send("data updated succcessfully");
+    }
+    catch (err){
+        res.status(400).send("something went wrong");
+    }
+})
+
+
 connectDB()
 .then(()=>{
     console.log("mongoose connection established")
