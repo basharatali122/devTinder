@@ -56,3 +56,6 @@
 
 -Add PI level validations on patch request and signup post api
 -Data Sanitizing - Add API Validation for each field 
+-intall validator
+-Explore validator library function and use validator function for email, password, and photoUrl
+-never trust on req.body
