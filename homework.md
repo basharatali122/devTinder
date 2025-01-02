@@ -45,3 +45,11 @@
 -API - Feed API - GET/feed - get all users from  the database 
 -API - Get user by ID 
 -Create a Delete user api
+
+
+-Explore schematype options from the documentaion
+-add required , unique, lowercase, min ,max, minlength,trim 
+-Add default 
+-Create a validate function for gender
+-Improve the DB shecma put all appropiate validation on each field in schema 
+- Add timeStamps to the userSchema

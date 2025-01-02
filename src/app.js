@@ -99,8 +99,7 @@ app.patch("/update",async(req,res)=>{
 
     try{
        const user = await User.findOneAndUpdate({_id:userId},data,{returnDocument:'before',
-
-       
+        runValidators:true,
          });
          console.log(user)
         
