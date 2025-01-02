@@ -92,12 +92,29 @@ app.delete("/user",async(req,res)=>{
 
 //find one and update model 
 
-app.patch("/update",async(req,res)=>{
-    const userId = req.body.userId;
+app.patch("/update/:userId",async(req,res)=>{
+    const userId = req.params?.userId;
     const data=req.body;
 
 
     try{
+        const ALLOWED_UPDATES =[
+          
+            "photoUrl",
+            "about",
+            "gender",
+            "age",
+            "skills",
+        ];
+        const isUpdateAllowed = Object.keys(data).every((k)=>
+            ALLOWED_UPDATES.includes(k)
+        );
+        if(!isUpdateAllowed){
+            throw new Error("update not allowed");
+        }
+        if(data?.skills.length>10){
+            throw new Error("Skills length is greater than 10 it is not allowed")
+        }
        const user = await User.findOneAndUpdate({_id:userId},data,{returnDocument:'before',
         runValidators:true,
          });
@@ -106,7 +123,7 @@ app.patch("/update",async(req,res)=>{
         res.send("data updated succcessfully");
     }
     catch (err){
-        res.status(400).send("something went wrong");
+        res.status(400).send("something went wrong:"+err.message);
     }
 })
 

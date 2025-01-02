@@ -53,3 +53,6 @@
 -Create a validate function for gender
 -Improve the DB shecma put all appropiate validation on each field in schema 
 - Add timeStamps to the userSchema
+
+-Add PI level validations on patch request and signup post api
+-Data Sanitizing - Add API Validation for each field 
