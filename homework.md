@@ -72,3 +72,7 @@
 -install jsonwebtoken
 -In login API , After email and password validation create a JWT token and send it to user 
 -read the cookies inside your profile API and find logged in user
+
+-userAuth Middleware 
+-Add the userAuth middle ware in profile API and a ne sendConnectionRequest Api
+-Set the expiry of JWT Token and cookies to 7 dasy 
