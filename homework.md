@@ -76,3 +76,6 @@
 -userAuth Middleware 
 -Add the userAuth middle ware in profile API and a ne sendConnectionRequest Api
 -Set the expiry of JWT Token and cookies to 7 dasy 
+
+-Create a userScema method to getJWT()
+-Create UserSchema method to comparepassword(passwordInputByUser)
