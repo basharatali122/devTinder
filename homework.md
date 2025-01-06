@@ -90,3 +90,7 @@
 -Create authRouter, profileRouter, requestRouter
 -Import these routers in app.js
 
+Create POST / logout api
+-Create PATCH  / profile/edit
+-Create PATCH /profile/password API => forgot password API 
+- Make you validate all data in every POST, PATCH apis 
