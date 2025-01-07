@@ -38,4 +38,13 @@ profileRouter.get("/profile", userAuth, async (req, res) => {
     }
 
   })
+
+  // profileRouter.patch("/profile/password",userAuth, async (req,res)=>{
+  
+  //   const user = user.req;
+
+  //   const changePassword = user.password=
+
+
+  // })
 module.exports=profileRouter;

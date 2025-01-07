@@ -94,3 +94,15 @@ Create POST / logout api
 -Create PATCH  / profile/edit
 -Create PATCH /profile/password API => forgot password API 
 - Make you validate all data in every POST, PATCH apis 
+
+
+-Create Connection Request Shema
+-Send Connection Request API
+-proper validation of Data
+-Think about all corner cases
+-$or query $and query in mongoose
+-schema.pre(“save”) function
+-Read more about indexes in MongoDB
+-Why do we need index in DB?
+-what is the advantage and disadvantages of creating 
+-read about compound indexs 
