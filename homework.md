@@ -113,3 +113,15 @@ Create POST / logout api
 -Create GET/user/requests/recived with all the checks
 -Read about ref an populate
 -Create GET/user/connections
+
+
+-Logic for GET / feed API 
+-Explore the $nin , $and , $ne and other query operators 
+
+Rough notes :
+/feed?page=2&limit=10 =>10-20 => .skip(0) & .limit(10)
+/feed?page=2&limit=10 =>10-20 => .skip(0) & .limit(10)
+/feed?page=2&limit=10 =>10-20 => .skip(0) & .limit(10)
+/feed?page=2&limit=10 =>10-20 => .skip(0) & .limit(10)
+
+Skip = (page-1)*limit;
