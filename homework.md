@@ -106,3 +106,10 @@ Create POST / logout api
 -Why do we need index in DB?
 -what is the advantage and disadvantages of creating 
 -read about compound indexs 
+
+
+-Write code with proper validations for POST /request/review/:status/:requestId
+-Thought process -Post vs Get 
+-Create GET/user/requests/recived with all the checks
+-Read about ref an populate
+-Create GET/user/connections
