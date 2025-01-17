@@ -55,7 +55,7 @@ const userSchema=new mongoose.Schema(
         , 
         photoUrl:{
             type:String,
-            default:"https://www.imgworlds.com/",
+            default:"https://akshaysaini.in/img/akshay.jpg",
             validate(value){
                 if(!validator.isURL(value)){
                     throw new Error("url is not well")
