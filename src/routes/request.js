@@ -9,29 +9,38 @@ requestAuth.post(
   userAuth,
   async (req, res) => {
     try {
-      const fromUserId = req.user._id;
-      const toUserId = req.params.toUserId;
-      const status = req.params.status;
+      const fromUserId = req.user._id; // Authenticated user ID
+      const { toUserId, status } = req.params;
 
+      // 1. Validate status
       const allowedStatus = ["interested", "ignored"];
-
       if (!allowedStatus.includes(status)) {
-        res.status(400).send("Invalid status type " + status);
+        return res.status(400).json({ message: `Invalid status type: ${status}` });
       }
 
-      const toUser = await User.findById(toUserId);
-      if(!toUser){
-        return res.status(404).json({message:"user not found! "})
+      // 2. Validate `toUserId`
+      if (!toUserId.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(400).json({ message: "Invalid user ID format" });
       }
-      const exsistingConnectionRequest = await ConnectionRequest.findOne({
+
+      // 3. Check if target user exists
+      const toUser = await User.findById(toUserId);
+      if (!toUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // 4. Check for existing connection requests
+      const existingConnectionRequest = await ConnectionRequest.findOne({
         $or: [
-          { fromUserId: toUserId },
-          { fromUserId: toUserId, toUserId: fromUserId },
+          { fromUserId, toUserId },
+          { fromUserId: toUserId, toUserId: fromUserId }, // Bidirectional check
         ],
       });
-      if(exsistingConnectionRequest){
-        res.status(400).send({message:"connection request already exist"})
+      if (existingConnectionRequest) {
+        return res.status(400).json({ message: "Connection request already exists" });
       }
+
+      // 5. Create and save the connection request
       const connectionRequest = new ConnectionRequest({
         fromUserId,
         toUserId,
@@ -40,15 +49,18 @@ requestAuth.post(
 
       const data = await connectionRequest.save();
 
+      // 6. Respond with success message
       res.json({
-        message: req.user.firstName+ " is "+ status+ " in "+toUser.firstName,
+        message: `${req.user.firstName} is ${status} in ${toUser.firstName}`,
         data,
       });
     } catch (err) {
-      res.status(404).send("ERROR: " + err.message);
+      // Handle unexpected errors
+      res.status(500).json({ message: "Internal server error", error: err.message });
     }
   }
 );
+
 
 requestAuth.post("/request/review/:status/:requestId", userAuth, async (req, res) => {
   try {
