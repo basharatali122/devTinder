@@ -1,8 +1,11 @@
 const express = require("express");
 const connectDB = require("./config/database");
+const http = require("http")
+const initialaizedSocketio = require("./utils/socket")
 const app = express();
 
 const { SchemaTypeOptions } = require("mongoose");
+
 
 
 
@@ -32,12 +35,17 @@ app.use("/",requestAuth);
 app.use("/",userRouter)
 
 
+const server = http.createServer(app)
+
+initialaizedSocketio(server);
+
+
 
 connectDB()
   .then(() => {
     console.log("mongoose connection established");
     // Start Server
-    app.listen(3000, () => {
+    server.listen(3000, () => {
       console.log("Server is listening on port 3000");
     });
   })
