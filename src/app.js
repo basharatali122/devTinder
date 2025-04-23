@@ -27,13 +27,14 @@ const authRouter = require('./routes/auth');
 const profileRouter=require("./routes/profile");
 const requestAuth=require("./routes/request");
 const userRouter = require("./routes/user")
+const chatRouter = require("./routes/chat")
 
 
 app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",requestAuth);
 app.use("/",userRouter)
-
+app.use("/",chatRouter)
 
 const server = http.createServer(app)
 
